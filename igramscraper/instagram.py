@@ -444,7 +444,7 @@ class Instagram:
     def get_medias_by_tag(self, tag, count=12, max_id='', min_timestamp=None):
         """
         :param tag: tag string
-        :param count: the number of how many media you want to get
+        :param count: the number of how many media you want to get, disabled if zero
         :param max_id: used to paginate
         :param min_timestamp: limit the time you want to start from
         :return: list of Media
@@ -453,7 +453,7 @@ class Instagram:
         medias = []
         media_ids = []
         has_next_page = True
-        while index < count and has_next_page:
+        while (index < count or count==0) and has_next_page:
 
             time.sleep(self.sleep_between_requests)
             response = self.__req.get(
