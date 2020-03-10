@@ -306,8 +306,7 @@ class Instagram:
         index = 0
         medias = []
         is_more_available = True
-
-        while index < count and is_more_available:
+        while (index < count or count==0) and is_more_available:
 
             variables = {
                 'id': str(id),
@@ -511,7 +510,7 @@ class Instagram:
         medias = []
         has_next_page = True
 
-        while index < count and has_next_page:
+        while (index < count or count==0) and has_next_page:
 
             time.sleep(self.sleep_between_requests)
             response = self.__req.get(
